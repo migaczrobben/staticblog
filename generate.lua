@@ -4,8 +4,8 @@
 indexSwitch = true -- Display newest file first in index
 includeRecent = true -- Display recent posts in side-bar; useful for blogs, not books
 paginateAfter = 5 -- Number of posts to begin paginating after (on index); 0 for no pagination
-sendTo = "/home/robben/Documents/Testing/" -- Where output will be placed (directory used for blog/book); ends in /; leave blank for current directory
-source = "source.txt" -- Source of blog/book (single file; generally something like "source.txt")
+sendTo = "" -- Where output will be placed (directory used for blog/book); ends in /; leave blank for current directory
+source = "" -- Source of blog/book (single file; generally something like "source.txt")
 blogName = "Blog" -- Title to be displayed on index page
 encoding = "utf-8" -- Text encoding; generally utf-8 for English content
 
