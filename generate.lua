@@ -117,7 +117,7 @@ end
 -- Add recent posts to individual segments
 if includeRecent then
 	main = "<div>Recent posts</div>"
-	for m = #tab, #tab - 20, -4 do
+	for m = #tab, #tab - 16, -4 do
 		if tab[m] then
 			main = main .. "<div><a href = \"" .. m/4 .. ".html\">" .. tab[m - 1] .. "</a> <span>" .. tab[m - 3] .. "</span></div>"
 		end
