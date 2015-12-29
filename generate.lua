@@ -1,13 +1,41 @@
--- Generate static blog; remade in Lua
+--[[
+	Generate static blog; remade in Lua
+	Modify variables (below) to suit your needs
+	Stylesheets not provided; examples may be added later
+	Written once without refactoring; will be inefficient; features much repetition
+	Intended only as an example; not full-featured or meant for full release
+	
+	Usage:
+		Source file setup:
+			Date
+			Author
+			Title
+			Post content
+			New post date
+			New post author
+			New post title
+			New post content
+			...
+		
+		Linux/UNIX (OS X?) execution:
+			lua /path/to/generate.lua
+			
+		Windows execution:
+			Not tested
+]]--
+
 
 -- Variables to modify content
-indexSwitch = true -- Display newest file first in index
-includeRecent = true -- Display recent posts in side-bar; useful for blogs, not books
-paginateAfter = 5 -- Number of posts to begin paginating after (on index); 0 for no pagination
-sendTo = "" -- Where output will be placed (directory used for blog/book); ends in /; leave blank for current directory
-source = "" -- Source of blog/book (single file; generally something like "source.txt")
-blogName = "Blog" -- Title to be displayed on index page
-encoding = "utf-8" -- Text encoding; generally utf-8 for English content
+indexSwitch = true -- Display newest file first in index (true, false)
+includeRecent = true -- Display recent posts in individual posts; useful for blogs, not books (true, false)
+paginateAfter = 5 -- Number of posts to begin paginating after (on index); 0 for no pagination (e.g. 0, 5, 7, 15 ...)
+sendTo = "/home/robben/Documents/Website/post/" -- Where output will be placed (directory used for blog/book); ends in /; leave blank for current directory (e.g. "/home/user/Blog/")
+source = "source.txt" -- Source of blog/book (single file; generally something like "source.txt"); include directory (e.g. "/home/user/Blog/source.txt")
+blogName = "Blog" -- Title to be displayed on index page (e.g. "My Blog")
+encoding = "utf-8" -- Text encoding; generally utf-8 for English content (e.g. "utf-8")
+indexStyle = "index.css" -- Stylesheet for index files; already at sendTo, so generally only a file name or in a directory for styles (e.g. "index.css")
+postStyle = "post.css" -- Stylesheet used on each post; see above (e.g. "post.css")
+addHead = "<link href = \"https://fonts.googleapis.com/css?family=Roboto\" rel = \"stylesheet\" type = \"text/css\">" -- Add other things (in HTML), such as online fonts, theme colors, or JavaScript libraries to the <head> tag (e.g. "<link href = \"somewebsite ...\" />")
 
 -- Generate pages of index when pagination enabled
 function buildPages(source)
@@ -32,7 +60,7 @@ function buildPages(source)
 	counter = 0
 	
 	for n = 1, pages do
-		total = "<!DOCTYPE html><html><head><title>" .. blogName .. ": " .. n .. "</title><meta charset = \"" .. encoding .. "\" /></head><body>"
+		total = "<!DOCTYPE html><html><head><title>" .. blogName .. ": " .. n .. "</title><meta charset = \"" .. encoding .. "\" /><link type = \"text/css\" rel = \"stylesheet\" href = \"" .. indexStyle .. "\" />" .. addHead .. "</head><body>"
 		for j = 1, paginateAfter do
 			counter = counter + 1
 			if toMake[counter] then
@@ -72,7 +100,7 @@ function indexAll(source)
 		buildPages(source)
 	else -- No pagination
 		toPage = {}
-		page = "<!DOCTYPE html><html><head><title>" .. blogName .. "</title><meta charset = \"" .. encoding .. "\" /></head><body>"
+		page = "<!DOCTYPE html><html><head><title>" .. blogName .. "</title><meta charset = \"" .. encoding .. "\" /><link type = \"text/css\" rel = \"stylesheet\" href = \"" .. indexStyle .. "\" />" .. addHead .. "</head><body>"
 		if not indexSwitch then
 			for q = 1, #source, 4 do
 				table.insert(toPage, "<div><a href = \"" .. q/4 .. ".html\">" .. source[q + 2] .. "</a> <span>" .. source[q] .. "</span></div>")
@@ -96,7 +124,7 @@ end
 
 -- Make individual pages with content
 function makeContent(date, author, title, post, number, main)
-	individual = "<!DOCTYPE html><html><head><title>" .. title .. "</title><meta charset = \"" .. encoding .. "\" /></head><body><div id = \"title\">" .. title .. "</div><div id = \"author\">" .. author .. "</div><div id = \"date\">" .. date .."</div><div id = \"post\">" .. post .. "</div><br><div>" .. main .. "</div></body></html>"
+	individual = "<!DOCTYPE html><html><head><title>" .. title .. "</title><meta charset = \"" .. encoding .. "\" /><link type = \"text/css\" rel = \"stylesheet\" href = \"" .. postStyle .. "\" />" .. addHead .. "</head><body><div id = \"title\">" .. title .. "</div><div id = \"author\">" .. author .. "</div><div id = \"date\">" .. date .."</div><div id = \"post\">" .. post .. "</div><br><div>" .. main .. "</div></body></html>"
 	local file = io.open(sendTo .. number .. ".html", "w")
 	io.input(file)
 	file:write(individual)
