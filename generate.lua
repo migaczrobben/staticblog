@@ -28,14 +28,14 @@
 -- Variables to modify content
 indexSwitch = true -- Display newest file first in index (true, false)
 includeRecent = true -- Display recent posts in individual posts; useful for blogs, not books (true, false)
-paginateAfter = 5 -- Number of posts to begin paginating after (on index); 0 for no pagination (e.g. 0, 5, 7, 15 ...)
-sendTo = "/home/robben/Documents/Website/post/" -- Where output will be placed (directory used for blog/book); ends in /; leave blank for current directory (e.g. "/home/user/Blog/")
-source = "source.txt" -- Source of blog/book (single file; generally something like "source.txt"); include directory (e.g. "/home/user/Blog/source.txt")
-blogName = "Blog" -- Title to be displayed on index page (e.g. "My Blog")
-encoding = "utf-8" -- Text encoding; generally utf-8 for English content (e.g. "utf-8")
-indexStyle = "index.css" -- Stylesheet for index files; already at sendTo, so generally only a file name or in a directory for styles (e.g. "index.css")
-postStyle = "post.css" -- Stylesheet used on each post; see above (e.g. "post.css")
-addHead = "<link href = \"https://fonts.googleapis.com/css?family=Roboto\" rel = \"stylesheet\" type = \"text/css\">" -- Add other things (in HTML), such as online fonts, theme colors, or JavaScript libraries to the <head> tag (e.g. "<link href = \"somewebsite ...\" />")
+paginateAfter = 0 -- Number of posts to begin paginating after (on index); 0 for no pagination (e.g. 0, 5, 7, 15 ...)
+sendTo = "" -- Where output will be placed (directory used for blog/book); ends in /; leave blank for current directory (e.g. "/home/user/Blog/")
+source = "" -- Source of blog/book (single file; generally something like "source.txt"); include directory (e.g. "/home/user/Blog/source.txt")
+blogName = "" -- Title to be displayed on index page (e.g. "My Blog")
+encoding = "" -- Text encoding; generally utf-8 for English content (e.g. "utf-8")
+indexStyle = "" -- Stylesheet for index files; already at sendTo, so generally only a file name or in a directory for styles (e.g. "index.css")
+postStyle = "" -- Stylesheet used on each post; see above (e.g. "post.css")
+addHead = "" -- Add other things (in HTML), such as online fonts, theme colors, or JavaScript libraries to the <head> tag (e.g. "<link href = \"somewebsite ...\" />")
 
 -- Generate pages of index when pagination enabled
 function buildPages(source)
