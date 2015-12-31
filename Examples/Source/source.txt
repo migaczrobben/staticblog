@@ -1,0 +1,8 @@
+1 January
+Author name
+Post title
+This is the content of your post
+2 January
+Author name
+New post title
+This is the content of a new post

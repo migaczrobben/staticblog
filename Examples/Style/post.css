@@ -1,0 +1,46 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	font-family: "Lora", serif;
+	color: #34495e;
+}
+ul {
+	list-style: none;
+	padding: 0;
+}
+li {
+	display: inline;
+	padding: 0 10px 0 0;
+}
+a:link {
+	text-decoration: none;
+	color: #3498db;
+}
+a:visited {
+	color: #9b59b6;
+}
+a:hover {
+	color: #2980b9;
+	text-decoration: underline;
+}
+#content {
+	padding: 25px 90px 25px 40px;
+	margin: auto;
+	width: 800px;
+}
+#post {
+	padding: 10px 0 10px 0;
+}
+#title {
+	font-size: 27px;
+	width: 100%;
+	color: #34495e;
+}
+.sep {
+	background-color: #34495e;
+	margin: 10px 0 10px 0;
+}
+#author, #date {
+	display: inline-block;
+}
